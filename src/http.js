@@ -1,3 +1,9 @@
+/**
+ * ...
+ *
+ * @author ???
+ * @date ???
+ */
 var http = (function () {
   var ajax = function (method, url, headers, data, success, error) {
     var xmlhttp = new XMLHttpRequest();
@@ -73,9 +79,10 @@ var http = (function () {
     redirect:function (url) {
       location.href = url;
     },
-
+    
     hash:function (hash) {
-      return typeof hash!=='undefined'? location.hash = hash : location.hash.substring(1);
+      // location.hash.substring(1) by Mark Notton (http://stackoverflow.com/questions/298503/how-can-you-check-for-a-hash-in-a-url-using-javascript)
+      return typeof hash!=='undefined'? location.hash = hash : location.hash.substring(1); // by Mark Notton
     }
   };
 })();
