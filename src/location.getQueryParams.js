@@ -1,7 +1,7 @@
 window.location.getQueryParams = function(query) {
   
   if (!query) {
-    query = window.location.search.substring(1)
+    query = window.location.search
   }
   
   var l = query.length
