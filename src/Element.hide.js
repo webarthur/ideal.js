@@ -1,9 +1,8 @@
-Element.prototype.hide = function () {
-	this.style.display = 'none';
-	return this;
-};
-NodeList.prototype.hide = function () {
-	for(var i=0; i<this.length; i++) {
-		this[i].hide();
-	}
-};
+$E.hide = function () {
+	this.style.display = 'none'
+	return this
+}
+$N.hide = function () {
+	var l = this.length
+	for(var i=0; i<l; this[i++].hide());
+}

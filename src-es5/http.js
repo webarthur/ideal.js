@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
@@ -17,11 +17,8 @@ var http = function () {
       var response = false;
       if (xmlhttp.readyState == 4) {
         if (xmlhttp.responseText) {
-          if (xmlhttp.getResponseHeader("Content-Type") === "application/json") {
-            response = JSON.parse(xmlhttp.responseText);
-          } else {
-            response = xmlhttp.responseText;
-          }
+          var is_json = xmlhttp.getResponseHeader('Content-Type') === 'application/json';
+          response = is_json ? JSON.parse(xmlhttp.responseText) : xmlhttp.responseText;
         }
         if (xmlhttp.status == 200) {
           success && success.call(null, response);
@@ -30,11 +27,13 @@ var http = function () {
         }
       }
     };
+
     xmlhttp.open(method, url, true);
+
     if (data) {
       if (data.constructor === FormData) {
         postBody = data;
-      } else if ((typeof data === "undefined" ? "undefined" : _typeof(data)) == 'object') {
+      } else if ((typeof data === 'undefined' ? 'undefined' : _typeof(data)) == 'object') {
         xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded; charset=UTF-8");
         var arr = [];
         for (var p in data) {
@@ -43,10 +42,11 @@ var http = function () {
           }
         }postBody = arr.join("&");
       } else {
-        xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded; charset=UTF-8");
+        xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded charset=UTF-8");
         postBody = data;
       }
     }
+
     if (headers) {
       for (var header in headers) {
         if (headers.hasOwnProperty(header)) {
@@ -55,11 +55,12 @@ var http = function () {
         }
       }
     }
+
     xmlhttp.send(postBody);
   };
+
   return {
     ajax: ajax,
-
     urlPrefix: '',
 
     get: function get(url, success, error) {

@@ -22,11 +22,13 @@ http.file = function (opt) {
 	// MAX SIZE VALIDATION
 	if (opt.maxSize > 0 && el.files[0].size > opt.maxSize) {
 
-		var fSExt = ['Bytes', 'KB', 'MB', 'GB', 'TB'],
-		    fSExtIndex = 0,
-		    maxSize = '';
+		var fSExt = ['Bytes', 'KB', 'MB', 'GB', 'TB'];
+		var fSExtIndex = 0;
+		var maxSize = '';
+
 		while (el.files[0].size > 900) {
-			el.files[0].size /= 1024;fSExtIndex++;
+			el.files[0].size /= 1024;
+			fSExtIndex++;
 		}
 
 		maxSize = Math.round(el.files[0].size * 100) / 100 + ' ' + fSExt[i];

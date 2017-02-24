@@ -1,6 +1,6 @@
 'use strict';
 
-String.prototype.stripTags = function (allowed) {
+$S.stripTags = function (allowed) {
   allowed = (((allowed || '') + '').toLowerCase().match(/<[a-z][a-z0-9]*>/g) || []).join('');
 
   var tags = /<\/?([a-z][a-z0-9]*)\b[^>]*>/gi;

@@ -1,4 +1,4 @@
-Element.prototype.disable = function() {
+$E.disable = function() {
 	this.setAttribute('disabled', true)
-	return this;
-};
+	return this
+}

@@ -6,15 +6,15 @@
  * @author Arthur Araújo
  * @date 01/12/2016
  */
-Element.prototype.react = function (data) {
-	var nodeList = this.querySelectorAll('[data-react]');
-	if (nodeList) {
+$E.react = function (data) {
+	var ls = this.findAll('[data-react]');
+	if (ls) {
 		if (this.getAttribute('data-react')) {
 			var self = this;
 			eval(self.getAttribute('data-react'));
 		}
-		nodeList.forEach(function (self) {
-			eval(self.getAttribute('data-react'));
+		ls.forEach(function (self) {
+			return eval(self.getAttribute('data-react'));
 		});
 	}
 	return this;

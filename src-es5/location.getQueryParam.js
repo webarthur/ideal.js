@@ -1,9 +1,9 @@
 'use strict';
 
-window.location.getQueryParam = function (name, query) {
+$L.getQueryParam = function (name, query) {
 
   if (!query) {
-    query = window.location.search;
+    query = $L.search;
   }
 
   var l = query.length;

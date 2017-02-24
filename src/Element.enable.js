@@ -1,4 +1,4 @@
-Element.prototype.enable = function() {
-	this.removeAttribute('disabled');
-	return this;
-};
+$E.enable = function() {
+	this.removeAttribute('disabled')
+	return this
+}

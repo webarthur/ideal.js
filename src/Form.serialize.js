@@ -1,4 +1,4 @@
-HTMLFormElement.prototype.serialize = function() {
+$F.serialize = function() {
   var form = this
 		, s = [];
   for (i=0; i<form.elements.length; i++) {

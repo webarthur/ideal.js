@@ -1,6 +1,6 @@
 'use strict';
 
-Element.prototype.enable = function () {
+$E.enable = function () {
 	this.removeAttribute('disabled');
 	return this;
 };

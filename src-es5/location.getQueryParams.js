@@ -1,6 +1,6 @@
 'use strict';
 
-window.location.getQueryParams = function (query) {
+$L.getQueryParams = function (query) {
 
   if (!query) {
     query = window.location.search;

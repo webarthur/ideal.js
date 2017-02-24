@@ -24,6 +24,7 @@
     "gulp-concat": "^2.6.1",
     "gulp-util": "^3.0.8",
     "mocha": "^3.2.0",
+    "run-sequence": "^1.2.2",
     "streamqueue": "^1.1.1",
     "through2": "^2.0.3",
     "vinyl-fs": "^2.4.4"

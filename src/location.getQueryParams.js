@@ -1,18 +1,18 @@
-window.location.getQueryParams = function(query) {
-  
+$L.getQueryParams = function(query) {
+
   if (!query) {
     query = window.location.search
   }
-  
+
   var l = query.length
   var q = {} // query
   var n = '' // name
   var v = '' // value
   var t = false
-  
-  for (var i=0; i<l; i++) {
-    var c = query[i]
-    
+
+  for (let i=0; i<l; i++) {
+    let c = query[i]
+
     if (c==='=') {
       t = true
     }

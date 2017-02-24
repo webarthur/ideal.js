@@ -1,9 +1,9 @@
 'use strict';
 
-HTMLFormElement.prototype.populate = function (o) {
-	var elements = this.elements;
+$F.populate = function (o) {
+	var lst = this.elements;
 	Object.keys(o).forEach(function (key) {
-		var e = elements[key];
+		var e = lst[key];
 		if (typeof e != 'undefined') {
 
 			// checkbox

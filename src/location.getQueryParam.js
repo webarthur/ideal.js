@@ -1,26 +1,26 @@
-window.location.getQueryParam = function(name, query) {
-  
+$L.getQueryParam = function(name, query) {
+
   if (!query) {
-    query = window.location.search
+    query = $L.search
   }
-  
+
   var l = query.length
   var n = '' // name
   var v = '' // value
   var t = false
-  
-  for (var i=0; i<l; i++) {
-    var c = query[i]
-    
+
+  for (let i=0; i<l; i++) {
+    let c = query[i]
+
     if (c==='=') {
       t = true
     }
     else if (c==='&' || i===l-1) {
-      
+
       if (n==name) {
         return decodeURIComponent(v)
       }
-      
+
       t = false
       n = ''
       v = ''

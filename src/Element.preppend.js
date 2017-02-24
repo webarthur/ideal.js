@@ -1,4 +1,4 @@
-Element.prototype.preppend = function(html) {
-	this.insertAdjacentHTML('afterbegin', html);
-	return this;
-};
+$E.preppend = function(html) {
+	this.insertAdjacentHTML('afterbegin', html)
+	return this
+}
