@@ -1,0 +1,34 @@
+{
+  "name": "idealjs",
+  "version": "1.0.0",
+  "description": "Just a prototype JavaScript/ES6 framework",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha --reporter spec",
+    "build": "gulp compile"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/webarthur/ideal.js.git"
+  },
+  "author": "Arthur Araújo <webarthur@gmail.com> (http://araujo.cc)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/webarthur/ideal.js/issues"
+  },
+  "homepage": "https://github.com/webarthur/ideal.js#readme",
+  "devDependencies": {
+    "babel-core": "^6.23.1",
+    "chai": "^3.5.0",
+    "event-stream": "^3.3.4",
+    "gulp-concat": "^2.6.1",
+    "gulp-util": "^3.0.8",
+    "mocha": "^3.2.0",
+    "streamqueue": "^1.1.1",
+    "through2": "^2.0.3",
+    "vinyl-fs": "^2.4.4"
+  },
+  "engines": {
+    "node": ">=0.10.0"
+  }
+}
