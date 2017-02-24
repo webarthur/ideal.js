@@ -9,7 +9,7 @@ window.location.getQueryParam = function(name, query) {
   var v = '' // value
   var t = false
   
-  for(i=0; i<l; i++) {
+  for(var i=0; i<l; i++) {
     var c = query[i]
     
     if (c==='=') {
