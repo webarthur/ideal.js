@@ -4,7 +4,7 @@ Date.isValid = function (s) {
 	var dt = {0: '', 1:'', 2:''}
   
   // split date
-  for(var i=0; i<l; i++) {
+  for (var i=0; i<l; i++) {
   	var c = s[i]
     if (c!=='/') {
     	dt[j] += c
