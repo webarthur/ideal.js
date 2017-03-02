@@ -16,7 +16,7 @@ var $findAll = function $findAll(q) {
   var p = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : document;
   return p.querySelectorAll(q) || [];
 };
-$ || ($ = $findAll);
+var $ = typeof $ == 'undefined' ? $findAll : $;
 
 var $E = Element.prototype;
 $E.get = function (id) {
@@ -39,7 +39,7 @@ $N.forEach = $H.forEach = $A.forEach;
 $N.each = function (func) {
   var l = this.length;
   for (var i = 0; i < l; i++) {
-    func(i, this[i]);
+    func.apply(this[i], i, this[i]);
   }
 };
 

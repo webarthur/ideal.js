@@ -2,7 +2,7 @@ var $e = (e, p = document) => p.getElementById(e) || {}
 var $all = (t, p = document.body) => p.getElementsByTagName(t) || {}
 var $find = (q, p = document) => p.querySelector(q) || {}
 var $findAll = (q, p = document) => p.querySelectorAll(q) || []
-$ || ($=$findAll)
+var $ = typeof $=='undefined'? $findAll : $
 
 var $E = Element.prototype
 $E.get =  function (id) { return $e(id, this) }
@@ -17,7 +17,7 @@ $N.forEach = $H.forEach = $A.forEach;
 $N.each = function (func) {
   var l = this.length
   for (var i = 0; i < l; i++) {
-    func(i, this[i])
+    func.apply(this[i], i, this[i])
   }
 }
 

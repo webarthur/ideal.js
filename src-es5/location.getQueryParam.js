@@ -19,6 +19,7 @@ $L.getQueryParam = function (name, query) {
     } else if (c === '&' || i === l - 1) {
 
       if (n == name) {
+        v += c === '+' ? ' ' : c;
         return decodeURIComponent(v);
       }
 
@@ -27,10 +28,7 @@ $L.getQueryParam = function (name, query) {
       v = '';
     } else if (i > 0 || c !== '?') {
       if (t) {
-        if (c === '+') {
-          c = ' ';
-        }
-        v += c;
+        v += c === '+' ? ' ' : c;
       } else {
         n += c;
       }

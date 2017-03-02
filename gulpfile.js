@@ -16,7 +16,7 @@ gulp.task('compile', ['compile_src'], () => {
 gulp.task('compile_src', () => {
   gulp.src('no.js')
     .pipe(ideal({
-      include: ['$doc.onload', 'htt*', 'cookies', 'location.*', 'Object.*', 'Date.*', 'Element.*', 'Form.*', 'String.*']
+      include: ['$doc.onload', 'http', 'http.file', 'cookies', 'location.*', 'Object.*', 'Date.*', 'Element.*', 'Form.*', 'String.*']
     }))
     .pipe(concat('ideal.js'))
     .pipe(gulp.dest('dist'))
