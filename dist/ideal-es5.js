@@ -266,7 +266,9 @@ $L.getQueryParam = function (name, query) {
     } else if (c === '&' || _i === l - 1) {
 
       if (n == name) {
-        v += c === '+' ? ' ' : c;
+        if (_i === l - 1) {
+          v += c === '+' ? ' ' : c;
+        }
         return decodeURIComponent(v);
       }
 
@@ -286,7 +288,7 @@ $L.getQueryParam = function (name, query) {
 $L.getQueryParams = function (query) {
 
   if (!query) {
-    query = window.location.search;
+    query = $L.search;
   }
 
   var l = query.length;
@@ -302,15 +304,15 @@ $L.getQueryParams = function (query) {
       t = true;
     } else if (c === '&' || _i2 === l - 1) {
       t = false;
+      if (_i2 === l - 1) {
+        v += c === '+' ? ' ' : c;
+      }
       q[n] = decodeURIComponent(v);
       n = '';
       v = '';
     } else if (_i2 > 0 || c !== '?') {
       if (t) {
-        if (c === '+') {
-          c = ' ';
-        }
-        v += c;
+        v += c === '+' ? ' ' : c;
       } else {
         n += c;
       }

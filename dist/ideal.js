@@ -240,7 +240,9 @@ $L.getQueryParam = function(name, query) {
     else if (c==='&' || i===l-1) {
 
       if (n==name) {
-        v += (c === '+') ? ' ' : c
+        if (i===l-1) {
+          v += (c === '+') ? ' ' : c
+        }
         return decodeURIComponent(v)
       }
 
@@ -262,7 +264,7 @@ $L.getQueryParam = function(name, query) {
 $L.getQueryParams = function(query) {
 
   if (!query) {
-    query = window.location.search
+    query = $L.search
   }
 
   var l = query.length
@@ -279,16 +281,16 @@ $L.getQueryParams = function(query) {
     }
     else if (c==='&' || i===l-1) {
       t = false
+      if (i===l-1) {
+        v += (c === '+') ? ' ' : c
+      }
       q[n] = decodeURIComponent(v)
       n = ''
       v = ''
     }
     else if (i>0 || c!=='?') {
       if (t) {
-        if (c==='+') {
-          c = ' '
-        }
-        v += c
+        v += (c === '+') ? ' ' : c
       }
       else {
         n += c

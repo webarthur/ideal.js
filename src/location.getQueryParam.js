@@ -18,7 +18,9 @@ $L.getQueryParam = function(name, query) {
     else if (c==='&' || i===l-1) {
 
       if (n==name) {
-        v += (c === '+') ? ' ' : c
+        if (i===l-1) {
+          v += (c === '+') ? ' ' : c
+        }
         return decodeURIComponent(v)
       }
 
