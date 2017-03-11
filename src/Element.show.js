@@ -1,9 +1,9 @@
-$E.hide = function () {
+$E.show = function () {
 	this.style.display = ''
 	this.removeAttribute('hidden')
 	return this
 }
-$N.hide = function () {
+$N.show = function () {
 	const l = this.length
 	for(let i=0; i<l; this[i++].show());
 	return this

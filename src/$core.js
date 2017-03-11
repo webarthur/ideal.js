@@ -13,7 +13,7 @@ $E.findAll = function (q) { return $findAll(q, this) }
 var $N = NodeList.prototype
 var $H = HTMLCollection
 var $A = Array.prototype
-$N.forEach = $H.forEach = $A.forEach;
+$N.forEach = $H.forEach = $A.forEach
 $N.each = function (func) {
   var l = this.length
   for (var i = 0; i < l; i++) {
@@ -21,9 +21,9 @@ $N.each = function (func) {
   }
 }
 
-var $doc = document.childNodes[1];
-var $body = document.body;
-var $head = $doc.find('head');
+var $doc = document.childNodes[1]
+var $body = document.body ? document.body : setTimeout('$body = document.body', 1)
+var $head = $doc.find('head')
 
 var $F = HTMLFormElement.prototype
 var $L = window.location

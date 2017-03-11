@@ -46,7 +46,7 @@ $N.each = function (func) {
 };
 
 var $doc = document.childNodes[1];
-var $body = document.body;
+var $body = document.body ? document.body : setTimeout('$body = document.body', 1);
 var $head = $doc.find('head');
 
 var $F = HTMLFormElement.prototype;
@@ -504,12 +504,12 @@ $N.remove = $H.remove = function () {
   }
 };
 
-$E.hide = function () {
+$E.show = function () {
   this.style.display = '';
   this.removeAttribute('hidden');
   return this;
 };
-$N.hide = function () {
+$N.show = function () {
   var l = this.length;
   for (var _i6 = 0; _i6 < l; this[_i6++].show()) {}
   return this;

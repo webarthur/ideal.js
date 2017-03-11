@@ -44,7 +44,7 @@ $N.each = function (func) {
 };
 
 var $doc = document.childNodes[1];
-var $body = document.body;
+var $body = document.body ? document.body : setTimeout('$body = document.body', 1);
 var $head = $doc.find('head');
 
 var $F = HTMLFormElement.prototype;
