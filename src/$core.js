@@ -28,3 +28,9 @@ var $head = $doc.find('head');
 var $F = HTMLFormElement.prototype
 var $L = window.location
 var $S = String.prototype
+
+var $html = function (s) {
+  var e = document.createElement('div')
+  e.innerHTML = s
+  return e.children[0]
+}
