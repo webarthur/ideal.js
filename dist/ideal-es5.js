@@ -53,6 +53,12 @@ var $F = HTMLFormElement.prototype;
 var $L = window.location;
 var $S = String.prototype;
 
+var $html = function $html(s) {
+  var e = document.createElement('div');
+  e.innerHTML = s;
+  return e.children[0];
+};
+
 /**
  * Class to add DOM load functions and execute all node with onload attribute.
  *
@@ -412,6 +418,23 @@ $E.before = function (html) {
   return this;
 };
 
+Element.prototype.css = function (n, v) {
+  if (typeof v == 'undefined') {
+    if ((typeof n === 'undefined' ? 'undefined' : _typeof(n)) == 'object') {
+      var k = Object.keys(n);
+      var l = k.length;
+      for (var _i4 = 0; _i4 < l; _i4++) {
+        this.css(k[_i4], n[k[_i4]]);
+      }
+    } else {
+      return this.style[n];
+    }
+  } else {
+    this.style[n] = v;
+  }
+  return this;
+};
+
 $E.data = function (opt, v) {
   if (typeof v == 'undefined') return this.getAttribute('data-' + opt);
 
@@ -436,7 +459,8 @@ $E.hide = function () {
 };
 $N.hide = function () {
   var l = this.length;
-  for (var i = 0; i < l; this[i++].hide()) {}
+  for (var _i5 = 0; _i5 < l; this[_i5++].hide()) {}
+  return this;
 };
 
 $E.on = function (evt, fn) {
@@ -478,6 +502,17 @@ $N.remove = $H.remove = function () {
       this[i].parentElement.removeChild(this[i]);
     }
   }
+};
+
+$E.hide = function () {
+  this.style.display = '';
+  this.removeAttribute('hidden');
+  return this;
+};
+$N.hide = function () {
+  var l = this.length;
+  for (var _i6 = 0; _i6 < l; this[_i6++].show()) {}
+  return this;
 };
 
 // http://stackoverflow.com/questions/3387427/remove-element-by-id

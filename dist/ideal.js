@@ -29,6 +29,12 @@ var $F = HTMLFormElement.prototype
 var $L = window.location
 var $S = String.prototype
 
+var $html = function (s) {
+  var e = document.createElement('div')
+  e.innerHTML = s
+  return e.children[0]
+}
+
 /**
  * Class to add DOM load functions and execute all node with onload attribute.
  *
@@ -389,6 +395,25 @@ $E.before = function(html) {
 	return this
 }
 
+Element.prototype.css = function (n, v) {
+  if (typeof v == 'undefined') {
+    if (typeof n == 'object') {
+      let k = Object.keys(n)
+      const l = k.length
+      for (let i = 0; i < l; i++) {
+        this.css(k[i], n[k[i]])
+      }
+    }
+    else {
+      return this.style[n]
+    }
+  }
+  else {
+    this.style[n] = v
+  }
+  return this
+}
+
 $E.data = function(opt, v) {
 	if(typeof v == 'undefined')
 		return this.getAttribute('data-' + opt)
@@ -413,8 +438,9 @@ $E.hide = function () {
 	return this
 }
 $N.hide = function () {
-	var l = this.length
-	for(var i=0; i<l; this[i++].hide());
+	const l = this.length
+	for(let i=0; i<l; this[i++].hide());
+	return this
 }
 
 $E.on = function(evt, fn) {
@@ -457,6 +483,17 @@ $N.remove = $H.remove = function() {
             this[i].parentElement.removeChild(this[i])
         }
     }
+}
+
+$E.hide = function () {
+	this.style.display = ''
+	this.removeAttribute('hidden')
+	return this
+}
+$N.hide = function () {
+	const l = this.length
+	for(let i=0; i<l; this[i++].show());
+	return this
 }
 
 // http://stackoverflow.com/questions/3387427/remove-element-by-id
