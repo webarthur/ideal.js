@@ -1,4 +1,4 @@
-$L.getQueryParam = function(name, query) {
+$L.getQueryParam = function (name, query) {
 
   if (!query) {
     query = $L.search

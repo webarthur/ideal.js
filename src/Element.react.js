@@ -4,7 +4,7 @@
  * @author Arthur Araújo
  * @date 01/12/2016
  */
-$E.react = function(data) {
+$E.react = function (data) {
 	var ls = this.findAll('[data-react]')
 	if(ls) {
 		if(this.getAttribute('data-react')) {

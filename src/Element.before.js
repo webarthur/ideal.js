@@ -1,4 +1,4 @@
-$E.before = function(html) {
+$E.before = function (html) {
 	this.insertAdjacentHTML('beforebegin', html)
 	return this
 }

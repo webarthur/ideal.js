@@ -1,4 +1,4 @@
-$S.decodeHTMLEntities = function() {
+$S.decodeHTMLEntities = function () {
   var el = document.createElement('div')
 	var str = this
 

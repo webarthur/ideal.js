@@ -1,7 +1,8 @@
+var $W = window
 var $e = (e, p = document) => p.getElementById(e) || {}
 var $all = (t, p = document.body) => p.getElementsByTagName(t) || {}
 var $find = (q, p = document) => p.querySelector(q) || {}
-var $findAll = (q, p = document) => p.querySelectorAll(q) || []
+var $findAll = (q, p = document) => typeof q == 'function' ? window.addEventListener('load', q) : (p.querySelectorAll(q) || [])
 var $ = typeof $=='undefined'? $findAll : $
 
 var $E = Element.prototype
@@ -29,7 +30,7 @@ var $F = HTMLFormElement.prototype
 var $L = window.location
 var $S = String.prototype
 
-var $html = function (s) {
+var $html = s => {
   var e = document.createElement('div')
   e.innerHTML = s
   return e.children[0]

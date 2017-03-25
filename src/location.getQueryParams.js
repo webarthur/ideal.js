@@ -1,3 +1,6 @@
+/**
+ * @author Arthur Araújo
+ */
 $L.getQueryParams = function(query) {
 
   if (!query) {

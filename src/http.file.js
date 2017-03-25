@@ -1,3 +1,6 @@
+/**
+ * @author Arthur Araújo
+ */
 http.file = function (opt) {
 
 	opt = opt || {};

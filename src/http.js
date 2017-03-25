@@ -1,8 +1,5 @@
 /**
- * ...
- *
- * @author ???
- * @date ???
+ * @author Arthur Araújo
  */
 var http = (function () {
   var ajax = function (method, url, headers, data, success, error) {

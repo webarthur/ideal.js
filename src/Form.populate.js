@@ -1,4 +1,4 @@
-$F.populate = function(o) {
+$F.populate = function (o) {
 	var lst = this.elements
 	Object.keys(o).forEach(function (key) {
 		var e = lst[key]

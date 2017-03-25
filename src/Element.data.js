@@ -1,4 +1,4 @@
-$E.data = function(opt, v) {
+$E.data = function (opt, v) {
 	if(typeof v == 'undefined')
 		return this.getAttribute('data-' + opt)
 
