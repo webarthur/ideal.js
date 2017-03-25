@@ -42,6 +42,19 @@ ideal.import('Date.isLeapYear')
 console.log(Date.isLeapYear(2020))
 ```
 
+Cross-browser include
+---------
+
+```js
+try {
+  eval("class __A { func(p = 1) {} }; const __B = () => p; delete __A; delete __B;")
+  document.write("<script src='{{{theme.url}}}/js/ideal.js'><\/script>")
+}
+catch (e) {
+  document.write("<script src='{{{theme.url}}}/js/ideal-es5.js'><\/script>")
+}
+```
+
 Core Functions
 ---------
 
