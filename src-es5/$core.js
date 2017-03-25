@@ -1,5 +1,6 @@
 'use strict';
 
+var $W = window;
 var $e = function $e(e) {
   var p = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : document;
   return p.getElementById(e) || {};
@@ -14,7 +15,7 @@ var $find = function $find(q) {
 };
 var $findAll = function $findAll(q) {
   var p = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : document;
-  return p.querySelectorAll(q) || [];
+  return typeof q == 'function' ? window.addEventListener('load', q) : p.querySelectorAll(q) || [];
 };
 var $ = typeof $ == 'undefined' ? $findAll : $;
 

@@ -2,6 +2,7 @@
 
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
+var $W = window;
 var $e = function $e(e) {
   var p = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : document;
   return p.getElementById(e) || {};
@@ -16,7 +17,7 @@ var $find = function $find(q) {
 };
 var $findAll = function $findAll(q) {
   var p = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : document;
-  return p.querySelectorAll(q) || [];
+  return typeof q == 'function' ? window.addEventListener('load', q) : p.querySelectorAll(q) || [];
 };
 var $ = typeof $ == 'undefined' ? $findAll : $;
 
@@ -76,10 +77,7 @@ $doc.onload(function () {
 });
 
 /**
- * ...
- *
- * @author ???
- * @date ???
+ * @author Arthur Araújo
  */
 var http = function () {
   var ajax = function ajax(method, url, headers, data, success, error) {
@@ -163,6 +161,9 @@ var http = function () {
   };
 }();
 
+/**
+ * @author Arthur Araújo
+ */
 http.file = function (opt) {
 
   opt = opt || {};
@@ -291,6 +292,9 @@ $L.getQueryParam = function (name, query) {
   }
 };
 
+/**
+ * @author Arthur Araújo
+ */
 $L.getQueryParams = function (query) {
 
   if (!query) {
@@ -463,7 +467,7 @@ $N.hide = function () {
   return this;
 };
 
-$E.on = function (evt, fn) {
+$E.on = $W.on = function (evt, fn) {
   if (this.addEventListener) this.addEventListener(evt, fn, false);else if (this.attachEvent) this.attachEvent('on' + evt, fn);
   return this;
 };
@@ -584,17 +588,6 @@ $S.decodeHTMLEntities = function () {
   return str;
 };
 
-/**
- * @author Chris Baker
- * @source http://stackoverflow.com/questions/18749591/encode-html-entities-in-javascript
- */
-$S.toHtmlEntities = function (exp) {
-  exp = typeof exp == 'undefined' ? new RegExp('[\xA0-\u9999<>&]', 'gim') : new RegExp('[' + exp + ']', 'gim');
-  return this.replace(exp, function (s) {
-    return "&#" + s[0] + ";";
-  });
-};
-
 $S.stripTags = function (allowed) {
   allowed = (((allowed || '') + '').toLowerCase().match(/<[a-z][a-z0-9]*>/g) || []).join('');
 
@@ -603,5 +596,16 @@ $S.stripTags = function (allowed) {
 
   return this.replace(commentsAndPhpTags, '').replace(tags, function ($0, $1) {
     return allowed.indexOf('<' + $1.toLowerCase() + '>') > -1 ? $0 : '';
+  });
+};
+
+/**
+ * @author Chris Baker
+ * @source http://stackoverflow.com/questions/18749591/encode-html-entities-in-javascript
+ */
+$S.toHtmlEntities = function (exp) {
+  exp = typeof exp == 'undefined' ? new RegExp('[\xA0-\u9999<>&]', 'gim') : new RegExp('[' + exp + ']', 'gim');
+  return this.replace(exp, function (s) {
+    return "&#" + s[0] + ";";
   });
 };

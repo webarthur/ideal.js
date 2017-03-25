@@ -1,7 +1,8 @@
+var $W = window
 var $e = (e, p = document) => p.getElementById(e) || {}
 var $all = (t, p = document.body) => p.getElementsByTagName(t) || {}
 var $find = (q, p = document) => p.querySelector(q) || {}
-var $findAll = (q, p = document) => p.querySelectorAll(q) || []
+var $findAll = (q, p = document) => typeof q == 'function' ? window.addEventListener('load', q) : (p.querySelectorAll(q) || [])
 var $ = typeof $=='undefined'? $findAll : $
 
 var $E = Element.prototype
@@ -29,7 +30,7 @@ var $F = HTMLFormElement.prototype
 var $L = window.location
 var $S = String.prototype
 
-var $html = function (s) {
+var $html = s => {
   var e = document.createElement('div')
   e.innerHTML = s
   return e.children[0]
@@ -50,10 +51,7 @@ $doc.onload(() => {
 })
 
 /**
- * ...
- *
- * @author ???
- * @date ???
+ * @author Arthur Araújo
  */
 var http = (function () {
   var ajax = function (method, url, headers, data, success, error) {
@@ -139,6 +137,9 @@ var http = (function () {
   }
 })()
 
+/**
+ * @author Arthur Araújo
+ */
 http.file = function (opt) {
 
 	opt = opt || {};
@@ -226,7 +227,7 @@ var cookies = {
 	}
 }
 
-$L.getQueryParam = function(name, query) {
+$L.getQueryParam = function (name, query) {
 
   if (!query) {
     query = $L.search
@@ -267,6 +268,9 @@ $L.getQueryParam = function(name, query) {
   }
 }
 
+/**
+ * @author Arthur Araújo
+ */
 $L.getQueryParams = function(query) {
 
   if (!query) {
@@ -385,12 +389,12 @@ $E.after = function(html) {
 	return this
 }
 
-$E.append = function(html) {
+$E.append = function (html) {
 	this.insertAdjacentHTML('beforeend', html)
 	return this
 }
 
-$E.before = function(html) {
+$E.before = function (html) {
 	this.insertAdjacentHTML('beforebegin', html)
 	return this
 }
@@ -414,7 +418,7 @@ Element.prototype.css = function (n, v) {
   return this
 }
 
-$E.data = function(opt, v) {
+$E.data = function (opt, v) {
 	if(typeof v == 'undefined')
 		return this.getAttribute('data-' + opt)
 
@@ -443,7 +447,7 @@ $N.hide = function () {
 	return this
 }
 
-$E.on = function(evt, fn) {
+$E.on = $W.on = function (evt, fn) {
 	if (this.addEventListener)
     this.addEventListener(evt, fn, false)
 	else if (this.attachEvent)
@@ -462,7 +466,7 @@ $E.preppend = function(html) {
  * @author Arthur Araújo
  * @date 01/12/2016
  */
-$E.react = function(data) {
+$E.react = function (data) {
 	var ls = this.findAll('[data-react]')
 	if(ls) {
 		if(this.getAttribute('data-react')) {
@@ -474,10 +478,10 @@ $E.react = function(data) {
 	return this
 }
 
-$E.remove = function() {
+$E.remove = function () {
     this.parentElement.removeChild(this);
-};
-$N.remove = $H.remove = function() {
+}
+$N.remove = $H.remove = function () {
     for(var i = this.length - 1; i >= 0; i--) {
         if(this[i] && this[i].parentElement) {
             this[i].parentElement.removeChild(this[i])
@@ -497,11 +501,11 @@ $N.show = function () {
 }
 
 // http://stackoverflow.com/questions/3387427/remove-element-by-id
-$E.unbind = function(type, handle) {
+$E.unbind = function (type, handle) {
 	document.removeEventListener? this.removeEventListener( type, handle, false ) : this.detachEvent( "on" + type, handle )
 }
 
-$F.populate = function(o) {
+$F.populate = function (o) {
 	var lst = this.elements
 	Object.keys(o).forEach(function (key) {
 		var e = lst[key]
@@ -558,7 +562,7 @@ $S.decodeEntities = function() {
 	})
 }
 
-$S.decodeHTMLEntities = function() {
+$S.decodeHTMLEntities = function () {
   var el = document.createElement('div')
 	var str = this
 
@@ -569,17 +573,6 @@ $S.decodeHTMLEntities = function() {
 	return str
 }
 
-/**
- * @author Chris Baker
- * @source http://stackoverflow.com/questions/18749591/encode-html-entities-in-javascript
- */
-$S.toHtmlEntities = function(exp) {
-  exp = typeof exp=='undefined'? new RegExp('[\u00A0-\u9999<>\&]', 'gim') : new RegExp('['+exp+']', 'gim')
-  return this.replace(exp, function(s) {
-      return "&#" + s[0] + ";"
-  })
-}
-
 $S.stripTags = function (allowed) {
   allowed = (((allowed || '') + '').toLowerCase().match(/<[a-z][a-z0-9]*>/g) || []).join('')
 
@@ -588,5 +581,16 @@ $S.stripTags = function (allowed) {
 
   return this.replace(commentsAndPhpTags, '').replace(tags, function ($0, $1) {
     return allowed.indexOf('<' + $1.toLowerCase() + '>') > -1 ? $0 : ''
+  })
+}
+
+/**
+ * @author Chris Baker
+ * @source http://stackoverflow.com/questions/18749591/encode-html-entities-in-javascript
+ */
+$S.toHtmlEntities = function(exp) {
+  exp = typeof exp=='undefined'? new RegExp('[\u00A0-\u9999<>\&]', 'gim') : new RegExp('['+exp+']', 'gim')
+  return this.replace(exp, function(s) {
+      return "&#" + s[0] + ";"
   })
 }
